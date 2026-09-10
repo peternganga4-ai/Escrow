@@ -41,3 +41,24 @@ def test_find_transaction(patched_db, capsys):
     assert found is not None
     assert found.txn_id == txn.txn_id
 
+
+def test_list_transactions_by_user(patched_db, capsys):
+    buyer, _, _ = _setup_buyer_and_product(patched_db)
+    create_transaction("P001", buyer)
+    txns = list_transactions_by_user("B001")
+    assert len(txns) == 1
+
+
+def test_delivery_sees_shipped(patched_db, capsys):
+    """Delivery agents see SHIPPED txns even if not assigned."""
+    from core.models import User
+    from services.transaction_service import advance_transaction
+    buyer, _, _ = _setup_buyer_and_product(patched_db)
+    txn = create_transaction("P001", buyer)
+    advance_transaction(txn.txn_id, buyer)  # → PAID (sets delivery_code)
+    retailer = User("R001", "Store", "store", "p", "RETAILER")
+    advance_transaction(txn.txn_id, retailer)  # → SHIPPED
+    txns = list_transactions_by_user("D001", role="DELIVERY")
+    assert len(txns) == 1
+    assert txns[0].status == "SHIPPED"
+
