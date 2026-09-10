@@ -31,3 +31,15 @@ def test_register_duplicate_username_raises(patched_db):
     with pytest.raises(ValueError, match="already exists"):
         register_user("Bob2", "bob", "p", "BUYER")
 
+
+
+def test_register_invalid_role_raises(patched_db):
+    with pytest.raises(ValueError, match="not available"):
+        register_user("Hack", "hacker", "p", "HACKER")
+
+
+def test_find_user_by_username(patched_db):
+    register_user("Carol", "carol", "p", "BUYER")
+    from services.user_service import find_user_by_username
+    assert find_user_by_username("carol").username == "carol"
+
