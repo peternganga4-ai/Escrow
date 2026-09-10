@@ -18,4 +18,15 @@ def test_add_ledger_entry_with_to(patched_db):
     assert ledger[0]["to"] == "R001"
     assert "from" not in ledger[0]
 
-    
+def test_add_ledger_entry_no_ids(patched_db):
+    add_ledger_entry("TXN003", "HOLD", 10000)
+    ledger = patched_db.load("ledger")
+    assert "from" not in ledger[0]
+    assert "to" not in ledger[0]
+
+
+def test_multiple_entries_append(patched_db):
+    add_ledger_entry("TXN001", "HOLD", 50000)
+    add_ledger_entry("TXN001", "RELEASE", 50000)
+    ledger = patched_db.load("ledger")
+    assert len(ledger) == 2
