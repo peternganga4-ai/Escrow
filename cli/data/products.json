@@ -1,0 +1,42 @@
+[
+  {
+    "product_id": "P001",
+    "name": "Laptop",
+    "price": 85000,
+    "retailer_id": "R001",
+    "description": "High-performance laptop",
+    "stock": 10
+  },
+  {
+    "product_id": "P002",
+    "name": "iPhone",
+    "price": 80000,
+    "retailer_id": "R001",
+    "description": "Latest iPhone model",
+    "stock": 15
+  },
+  {
+    "product_id": "P003",
+    "name": "Headphones",
+    "price": 5000,
+    "retailer_id": "R002",
+    "description": "Wireless noise-cancelling",
+    "stock": 30
+  },
+  {
+    "product_id": "P004",
+    "name": "Keyboard",
+    "price": 3500,
+    "retailer_id": "R002",
+    "description": "Mechanical gaming keyboard",
+    "stock": 20
+  },
+  {
+    "product_id": "P005",
+    "name": "Monitor",
+    "price": 45000,
+    "retailer_id": "R001",
+    "description": "27-inch 4K monitor",
+    "stock": 8
+  }
+]
