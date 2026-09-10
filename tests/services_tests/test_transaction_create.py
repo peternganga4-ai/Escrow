@@ -21,3 +21,23 @@ def test_create_transaction_success(patched_db, capsys):
     assert txn is not None
     assert txn.status == "PENDING"
     assert txn.amount == 85000
+
+
+def test_create_insufficient_balance(patched_db, capsys):
+    buyer = User("B001", "Poor", "poor", "p", "BUYER", 1000)
+    retailer = User("R001", "Store", "store", "p", "RETAILER")
+    product = Product("P001", "Laptop", 85000, "R001", "Nice", 10)
+    patched_db.save("users", [buyer.to_dict(), retailer.to_dict()])
+    patched_db.save("products", [product.to_dict()])
+    txn = create_transaction("P001", buyer)
+    assert txn is None
+
+
+
+def test_find_transaction(patched_db, capsys):
+    buyer, _, _ = _setup_buyer_and_product(patched_db)
+    txn = create_transaction("P001", buyer)
+    found = find_transaction(txn.txn_id)
+    assert found is not None
+    assert found.txn_id == txn.txn_id
+
