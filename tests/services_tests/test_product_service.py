@@ -41,3 +41,8 @@ def test_display_products_prints_table(patched_db, sample_product, capsys):
     assert "Laptop" in captured.out
     assert "P001" in captured.out
 
+def test_display_products_empty(patched_db, capsys):
+    from services.product_service import display_products
+    display_products()
+    captured = capsys.readouterr()
+    assert "No products" in captured.out
