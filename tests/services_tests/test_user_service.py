@@ -43,3 +43,22 @@ def test_find_user_by_username(patched_db):
     from services.user_service import find_user_by_username
     assert find_user_by_username("carol").username == "carol"
 
+
+
+
+def test_find_user_by_username_not_found(patched_db):
+    from services.user_service import find_user_by_username
+    assert find_user_by_username("nobody") is None
+
+
+def test_find_user_by_id(patched_db):
+    user = register_user("Dave", "dave", "p", "RETAILER")
+    assert find_user_by_id(user.user_id).username == "dave"
+
+
+def test_update_user_persists(patched_db):
+    user = register_user("Eve", "eve", "p", "BUYER")
+    user.balance = 500
+    from services.user_service import update_user
+    update_user(user)
+    assert find_user_by_id(user.user_id).balance == 500
