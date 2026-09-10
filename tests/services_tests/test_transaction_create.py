@@ -62,3 +62,13 @@ def test_delivery_sees_shipped(patched_db, capsys):
     assert len(txns) == 1
     assert txns[0].status == "SHIPPED"
 
+
+
+def test_delivery_code_set_on_payment(patched_db, capsys):
+    """Paying sets a 6-digit delivery_code on the transaction."""
+    buyer, _, _ = _setup_buyer_and_product(patched_db)
+    txn = create_transaction("P001", buyer)
+    updated = advance_transaction(txn.txn_id, buyer)
+    assert updated.delivery_code is not None
+    assert len(updated.delivery_code) == 6
+    assert updated.delivery_code.isdigit()
