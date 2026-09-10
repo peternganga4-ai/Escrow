@@ -19,3 +19,15 @@ def test_register_delivery_gets_50k(patched_db):
     user = register_user("Driver", "driver", "p", "DELIVERY")
     assert user.balance == 50000
 
+
+
+def test_register_trustee_not_allowed(patched_db):
+    with pytest.raises(ValueError, match="not available"):
+        register_user("Trust", "trust", "p", "TRUSTEE")
+
+
+def test_register_duplicate_username_raises(patched_db):
+    register_user("Bob", "bob", "p", "BUYER")
+    with pytest.raises(ValueError, match="already exists"):
+        register_user("Bob2", "bob", "p", "BUYER")
+
