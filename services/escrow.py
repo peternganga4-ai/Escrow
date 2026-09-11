@@ -32,3 +32,19 @@ def release_funds(txn):
                      to_id=driver.user_id)
     add_ledger_entry(txn.txn_id, "TRUSTEE_FEE", trustee_fee,
                      to_id=trustee.user_id)
+
+
+#refund hold on escrow funds back to the buyer
+def refund_funds(txn):
+    buyer = find_user_by_id(txn.buyer_id)
+    buyer.balance += txn.amount
+    buyer.locked -= txn.amount
+    update_user(buyer)
+    product = find_product(txn.product_id)
+    product.stock += 1
+    save_product(product)
+    add_ledger_entry(txn.txn_id,
+    "REFUND", txn.amount,
+                      to_id=buyer.
+                      user_id
+                       )
