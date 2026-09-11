@@ -1,0 +1,65 @@
+[
+  {
+    "user_id": "B001",
+    "name": "John Buyer",
+    "username": "john",
+    "password": "pass123",
+    "role": "BUYER",
+    "balance": 200000,
+    "locked": 0
+  },
+  {
+    "user_id": "B002",
+    "name": "Alice Buyer",
+    "username": "alice",
+    "password": "pass123",
+    "role": "BUYER",
+    "balance": 150000,
+    "locked": 0
+  },
+  {
+    "user_id": "R001",
+    "name": "TechStore",
+    "username": "retailer",
+    "password": "pass123",
+    "role": "RETAILER",
+    "balance": 0,
+    "locked": 0
+  },
+  {
+    "user_id": "R002",
+    "name": "GadgetHub",
+    "username": "gadgets",
+    "password": "pass123",
+    "role": "RETAILER",
+    "balance": 0,
+    "locked": 0
+  },
+  {
+    "user_id": "D001",
+    "name": "FastDeliver",
+    "username": "delivery",
+    "password": "pass123",
+    "role": "DELIVERY",
+    "balance": 0,
+    "locked": 0
+  },
+  {
+    "user_id": "D002",
+    "name": "QuickShip",
+    "username": "shipper",
+    "password": "pass123",
+    "role": "DELIVERY",
+    "balance": 0,
+    "locked": 0
+  },
+  {
+    "user_id": "T001",
+    "name": "TrustBoard",
+    "username": "trustee",
+    "password": "pass123",
+    "role": "TRUSTEE",
+    "balance": 0,
+    "locked": 0
+  }
+]
