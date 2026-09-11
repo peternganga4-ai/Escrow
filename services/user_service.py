@@ -40,3 +40,20 @@ def register_user(name, username, password, role):
     if balance > 0:
         add_ledger_entry("--", "SEED", balance, to_id=user_id)
     return user   
+
+
+
+#  finding username in db
+def find_user_by_username(username):
+    for u in db.load("users"):
+        if u["username"] == username:
+            return models.User.from_dict(u)
+    return None
+
+#find by id
+def find_user_by_id(user_id):
+    for u in db.load("users"):
+        if u["user_id"] == user_id:
+            return models.User.from_dict(u)
+    return None
+
