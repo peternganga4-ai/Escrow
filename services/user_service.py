@@ -57,3 +57,12 @@ def find_user_by_id(user_id):
             return models.User.from_dict(u)
     return None
 
+
+#update CRUD part taking existig user object
+def update_user(user):
+    users_data = db.load("users")
+    for i, u in enumerate(users_data):
+        if u["user_id"] == user.user_id:
+            users_data[i] = user.to_dict()
+            break
+    db.save("users", users_data)
