@@ -21,3 +21,14 @@ def release_funds(txn):
     trustee = find_user_by_id("T001")
     trustee.balance += trustee_fee
     update_user(trustee)
+    #Unlock buyer's locked funds
+    buyer = find_user_by_id(txn.buyer_id)
+    buyer.locked -= txn.amount
+    update_user(buyer)
+    #Ledger entries
+    add_ledger_entry(txn.txn_id, "RELEASE", retailer_payout,
+                     to_id=retailer.user_id)
+    add_ledger_entry(txn.txn_id, "DELIVERY_FEE", delivery_fee,
+                     to_id=driver.user_id)
+    add_ledger_entry(txn.txn_id, "TRUSTEE_FEE", trustee_fee,
+                     to_id=trustee.user_id)
