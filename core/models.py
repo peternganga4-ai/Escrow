@@ -1,4 +1,4 @@
-
+"""BridgeEscrow — Data models: User, Product."""
 
 from .config import BUYER_STARTING_BALANCE, RETAILER_STARTING_BALANCE
 from .config import DELIVERY_STARTING_BALANCE, TRUSTEE_STARTING_BALANCE
@@ -13,7 +13,7 @@ BALANCE_BY_ROLE = {
 
 
 class User:
-  
+    """Represents a system user with role-based access."""
 
     def __init__(self, user_id, name, username, password, role, balance=0):
         self.user_id = user_id
@@ -41,7 +41,7 @@ class User:
 
 
 class Product:
-    
+    """Represents a product listing."""
 
     def __init__(self, product_id, name, price, retailer_id,
                  description="", stock=0):

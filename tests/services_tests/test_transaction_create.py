@@ -15,6 +15,7 @@ def _setup_buyer_and_product(patched_db):
     patched_db.save("products", [product.to_dict()])
     return buyer, retailer, product
 
+
 def test_create_transaction_success(patched_db, capsys):
     buyer, _, _ = _setup_buyer_and_product(patched_db)
     txn = create_transaction("P001", buyer)
@@ -31,7 +32,6 @@ def test_create_insufficient_balance(patched_db, capsys):
     patched_db.save("products", [product.to_dict()])
     txn = create_transaction("P001", buyer)
     assert txn is None
-
 
 
 def test_find_transaction(patched_db, capsys):
@@ -61,7 +61,6 @@ def test_delivery_sees_shipped(patched_db, capsys):
     txns = list_transactions_by_user("D001", role="DELIVERY")
     assert len(txns) == 1
     assert txns[0].status == "SHIPPED"
-
 
 
 def test_delivery_code_set_on_payment(patched_db, capsys):

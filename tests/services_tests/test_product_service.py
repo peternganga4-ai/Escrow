@@ -7,6 +7,7 @@ def test_list_products_empty(patched_db):
     result = list_products()
     assert result == []
 
+
 def test_list_products_returns_all(patched_db, sample_product):
     result = list_products()
     assert len(result) == 1
@@ -20,10 +21,8 @@ def test_find_product_existing(patched_db, sample_product):
     assert p.price == 85000
 
 
-
 def test_find_product_not_found(patched_db):
     assert find_product("P999") is None
-
 
 
 def test_save_product_updates_stock(patched_db, sample_product):
@@ -40,6 +39,7 @@ def test_display_products_prints_table(patched_db, sample_product, capsys):
     captured = capsys.readouterr()
     assert "Laptop" in captured.out
     assert "P001" in captured.out
+
 
 def test_display_products_empty(patched_db, capsys):
     from services.product_service import display_products

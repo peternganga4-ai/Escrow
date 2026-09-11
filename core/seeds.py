@@ -1,4 +1,4 @@
-
+"""BridgeEscrow — Demo data seeding."""
 
 from .database import load, save
 from .models import User, Product
@@ -7,9 +7,9 @@ from .config import DELIVERY_STARTING_BALANCE
 
 
 def seed_all():
-    
+    """Seed demo users and products if data files are empty."""
     if load("users"):
-        return 
+        return  # Already seeded
     demo_users = [
         User("B001", "John Buyer", "buyer", "buyer123",
              "BUYER", BUYER_STARTING_BALANCE),

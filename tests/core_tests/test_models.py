@@ -1,4 +1,4 @@
-
+"""Tests for core.models — User and Product serialization."""
 
 from core.models import User, Product
 

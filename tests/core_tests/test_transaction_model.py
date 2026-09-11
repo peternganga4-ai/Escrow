@@ -1,4 +1,4 @@
-
+"""Tests for core.transaction_model — Transaction status flow."""
 
 from core.transaction_model import Transaction
 

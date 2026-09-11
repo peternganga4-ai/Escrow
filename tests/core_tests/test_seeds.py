@@ -1,4 +1,4 @@
-
+"""Tests for core.seeds — Demo data seeding."""
 
 
 def test_seed_all_creates_users(patched_db):

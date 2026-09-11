@@ -14,7 +14,7 @@ def _setup_escrow(patched_db):
     trustee = User("T001", "Trust", "trust", "p", "TRUSTEE")
     product = Product("P001", "Laptop", 85000, "R001", "Nice", 9)
     patched_db.save("users", [buyer.to_dict(), retailer.to_dict(),
-                                  driver.to_dict(), trustee.to_dict()])
+                              driver.to_dict(), trustee.to_dict()])
     patched_db.save("products", [product.to_dict()])
     txn = Transaction("TXN001", "P001", "B001", "R001", 85000, "DELIVERED")
     txn.delivery_id = "D001"
@@ -34,6 +34,7 @@ def test_release_funds_with_fees(patched_db):
     assert trustee.balance == 850
     assert buyer.locked == 0
 
+
 def test_refund_funds(patched_db):
     txn = _setup_escrow(patched_db)
     refund_funds(txn)
@@ -42,6 +43,7 @@ def test_refund_funds(patched_db):
     assert buyer.locked == 0
     from services.product_service import find_product
     assert find_product("P001").stock == 10
+
 
 def test_release_adds_ledger_entries(patched_db):
     txn = _setup_escrow(patched_db)
