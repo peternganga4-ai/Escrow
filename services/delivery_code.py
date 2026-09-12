@@ -1,7 +1,5 @@
 import random
 
-import random
-
 
 def generate_delivery_code():
     return f"{random.randint(100000, 999999)}"

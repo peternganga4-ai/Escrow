@@ -1,6 +1,4 @@
 import core.config as config
-
-import core.config as config
 from .user_service import find_user_by_id, update_user
 from .product_service import find_product, save_product
 from .ledger import add_ledger_entry

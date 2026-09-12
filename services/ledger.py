@@ -1,7 +1,5 @@
 import core.database as db
 
-import core.database as db
-
 
 def add_ledger_entry(txn_id, entry_type, amount, from_id=None, to_id=None):
     ledger = db.load("ledger")
