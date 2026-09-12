@@ -1,10 +1,7 @@
-"""BridgeEscrow — Authentication and session management."""
-
 from .user_service import find_user_by_username
 
 
 class AuthManager:
-    """Manages user authentication and session state."""
 
     def __init__(self):
         self.current_user = None
@@ -12,15 +9,15 @@ class AuthManager:
     def login(self, username, password):
         user = find_user_by_username(username)
         if not user or user.password != password:
-            print("\n✗ Invalid username or password.")
+            print("\nInvalid username or password.")
             return None
         self.current_user = user
-        print(f"\n✓ Welcome, {user.name}! Role: {user.role}")
+        print(f"\nWelcome, {user.name}! Role: {user.role}")
         return user
 
     def logout(self):
         if self.current_user:
-            print(f"\n✓ Goodbye, {self.current_user.name}!")
+            print(f"\nGoodbye, {self.current_user.name}!")
             self.current_user = None
 
     def is_authenticated(self):
@@ -31,9 +28,9 @@ class AuthManager:
 
     def require_role(self, *roles):
         if not self.is_authenticated():
-            print("\n✗ You must be logged in.")
+            print("\nYou must be logged in.")
             return False
         if not self.has_role(*roles):
-            print(f"\n✗ Access denied. Required: {', '.join(roles)}")
+            print(f"\nAccess denied. Required: {', '.join(roles)}")
             return False
         return True

@@ -1,5 +1,3 @@
-"""Tests for services.ledger — Ledger entry utilities."""
-
 from services.ledger import add_ledger_entry
 
 

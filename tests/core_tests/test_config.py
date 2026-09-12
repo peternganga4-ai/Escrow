@@ -1,5 +1,3 @@
-"""Tests for core.config — Constants, permissions, fees."""
-
 import core.config as config
 
 

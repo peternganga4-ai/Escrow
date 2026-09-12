@@ -1,5 +1,4 @@
-"""BridgeEscrow — Global configuration and constants."""
-
+DATA_DIR_NAME = "data"
 DATA_DIR_NAME = "data"
 
 ROLE_PREFIX = {
@@ -11,12 +10,14 @@ ROLE_PREFIX = {
 
 VALID_ROLES = set(ROLE_PREFIX)
 
-# Roles users can self-register as (TRUSTEE is invite-only)
 REGISTRABLE_ROLES = ["BUYER", "RETAILER", "DELIVERY"]
 
 TXN_STATUS_FLOW = [
-    "PENDING", "PAID", "SHIPPED",
-    "DELIVERED", "REFUNDED",
+    "PENDING",
+    "PAID",
+    "SHIPPED",
+    "DELIVERED",
+    "REFUNDED",
 ]
 
 ROLE_PERMISSIONS = {
@@ -31,11 +32,9 @@ RETAILER_STARTING_BALANCE = 100000
 DELIVERY_STARTING_BALANCE = 50000
 TRUSTEE_STARTING_BALANCE = 0
 
-# Fee percentages
-DELIVERY_FEE_PCT = 0.03   # 3% delivery fee
-TRUSTEE_FEE_PCT = 0.01   # 1% trustee commission
+DELIVERY_FEE_PCT = 0.03
+TRUSTEE_FEE_PCT = 0.01
 
-# Starting balances by role (used by user_service)
 BALANCE_BY_ROLE = {
     "BUYER": BUYER_STARTING_BALANCE,
     "RETAILER": RETAILER_STARTING_BALANCE,
@@ -43,5 +42,4 @@ BALANCE_BY_ROLE = {
     "TRUSTEE": TRUSTEE_STARTING_BALANCE,
 }
 
-# No refund allowed once funds are released
 NO_REFUND_STATUSES = {"RELEASED"}

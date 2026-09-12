@@ -1,4 +1,4 @@
-"""BridgeEscrow — JSON-based data persistence layer."""
+import json
 
 import json
 import os
@@ -15,7 +15,6 @@ FILES = {
 
 
 def load(key):
-    """Load data for a given key. Returns list (empty if file missing)."""
     path = FILES[key]
     if not os.path.exists(path):
         return []
@@ -24,7 +23,6 @@ def load(key):
 
 
 def save(key, data):
-    """Save data for a given key with pretty JSON formatting."""
     path = FILES[key]
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:

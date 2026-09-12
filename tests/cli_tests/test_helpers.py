@@ -1,5 +1,3 @@
-"""Tests for cli.helpers — Input and display utilities."""
-
 from cli.helpers import show_transaction, show_balance
 from core.transaction_model import Transaction
 from core.models import User
@@ -57,23 +55,27 @@ def test_show_balance_no_locked(capsys):
 
 def test_prompt_choice_valid(monkeypatch, capsys):
     from cli.helpers import prompt_choice
+
     monkeypatch.setattr("builtins.input", lambda _: "1")
     assert prompt_choice("Pick", ["A", "B", "C"]) == "A"
 
 
 def test_prompt_choice_invalid(monkeypatch, capsys):
     from cli.helpers import prompt_choice
+
     monkeypatch.setattr("builtins.input", lambda _: "99")
     assert prompt_choice("Pick", ["A", "B"]) is None
 
 
 def test_confirm_yes(monkeypatch):
     from cli.helpers import confirm
+
     monkeypatch.setattr("builtins.input", lambda _: "y")
     assert confirm("Continue?") is True
 
 
 def test_confirm_no(monkeypatch):
     from cli.helpers import confirm
+
     monkeypatch.setattr("builtins.input", lambda _: "n")
     assert confirm("Continue?") is False

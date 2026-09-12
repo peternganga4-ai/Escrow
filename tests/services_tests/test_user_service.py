@@ -1,5 +1,3 @@
-"""Tests for services.user_service."""
-
 import pytest
 from core.models import User
 from services.user_service import register_user, find_user_by_id
@@ -39,11 +37,13 @@ def test_register_invalid_role_raises(patched_db):
 def test_find_user_by_username(patched_db):
     register_user("Carol", "carol", "p", "BUYER")
     from services.user_service import find_user_by_username
+
     assert find_user_by_username("carol").username == "carol"
 
 
 def test_find_user_by_username_not_found(patched_db):
     from services.user_service import find_user_by_username
+
     assert find_user_by_username("nobody") is None
 
 
@@ -56,5 +56,6 @@ def test_update_user_persists(patched_db):
     user = register_user("Eve", "eve", "p", "BUYER")
     user.balance = 500
     from services.user_service import update_user
+
     update_user(user)
     assert find_user_by_id(user.user_id).balance == 500

@@ -1,8 +1,8 @@
-"""Tests for services.transaction_service — Create, find, list."""
-
 from core.models import User, Product
 from services.transaction_service import (
-    create_transaction, find_transaction, list_transactions_by_user,
+    create_transaction,
+    find_transaction,
+    list_transactions_by_user,
     advance_transaction,
 )
 
@@ -50,21 +50,20 @@ def test_list_transactions_by_user(patched_db, capsys):
 
 
 def test_delivery_sees_shipped(patched_db, capsys):
-    """Delivery agents see SHIPPED txns even if not assigned."""
     from core.models import User
     from services.transaction_service import advance_transaction
+
     buyer, _, _ = _setup_buyer_and_product(patched_db)
     txn = create_transaction("P001", buyer)
-    advance_transaction(txn.txn_id, buyer)  # → PAID (sets delivery_code)
+    advance_transaction(txn.txn_id, buyer)
     retailer = User("R001", "Store", "store", "p", "RETAILER")
-    advance_transaction(txn.txn_id, retailer)  # → SHIPPED
+    advance_transaction(txn.txn_id, retailer)
     txns = list_transactions_by_user("D001", role="DELIVERY")
     assert len(txns) == 1
     assert txns[0].status == "SHIPPED"
 
 
 def test_delivery_code_set_on_payment(patched_db, capsys):
-    """Paying sets a 6-digit delivery_code on the transaction."""
     buyer, _, _ = _setup_buyer_and_product(patched_db)
     txn = create_transaction("P001", buyer)
     updated = advance_transaction(txn.txn_id, buyer)

@@ -1,5 +1,3 @@
-"""Tests for services.product_service — Product listing and display."""
-
 from services.product_service import list_products, find_product, save_product
 
 
@@ -35,6 +33,7 @@ def test_save_product_updates_stock(patched_db, sample_product):
 
 def test_display_products_prints_table(patched_db, sample_product, capsys):
     from services.product_service import display_products
+
     display_products()
     captured = capsys.readouterr()
     assert "Laptop" in captured.out
@@ -43,6 +42,7 @@ def test_display_products_prints_table(patched_db, sample_product, capsys):
 
 def test_display_products_empty(patched_db, capsys):
     from services.product_service import display_products
+
     display_products()
     captured = capsys.readouterr()
     assert "No products" in captured.out

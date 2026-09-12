@@ -1,5 +1,3 @@
-"""Tests for core.models — User and Product serialization."""
-
 from core.models import User, Product
 
 
@@ -22,8 +20,13 @@ class TestUser:
         assert u.locked == 0
 
     def test_user_from_dict_missing_balance(self):
-        d = {"user_id": "B001", "name": "A", "username": "a",
-             "password": "p", "role": "BUYER"}
+        d = {
+            "user_id": "B001",
+            "name": "A",
+            "username": "a",
+            "password": "p",
+            "role": "BUYER",
+        }
         u = User.from_dict(d)
         assert u.balance == 0
         assert u.locked == 0
@@ -45,8 +48,7 @@ class TestProduct:
         assert p.stock == 0
 
     def test_product_from_dict_missing_optional(self):
-        d = {"product_id": "P001", "name": "X", "price": 100,
-             "retailer_id": "R001"}
+        d = {"product_id": "P001", "name": "X", "price": 100, "retailer_id": "R001"}
         p = Product.from_dict(d)
         assert p.description == ""
         assert p.stock == 0

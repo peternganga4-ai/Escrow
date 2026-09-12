@@ -1,5 +1,3 @@
-"""Tests for core.transaction_model — Transaction status flow."""
-
 from core.transaction_model import Transaction
 
 
@@ -44,9 +42,13 @@ def test_to_dict_roundtrip():
 
 
 def test_from_dict_default_status():
-    d = {"txn_id": "TXN001", "product_id": "P001",
-         "buyer_id": "B001", "retailer_id": "R001",
-         "amount": 50000}
+    d = {
+        "txn_id": "TXN001",
+        "product_id": "P001",
+        "buyer_id": "B001",
+        "retailer_id": "R001",
+        "amount": 50000,
+    }
     t = Transaction.from_dict(d)
     assert t.status == "PENDING"
     assert t.delivery_id is None

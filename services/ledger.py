@@ -1,10 +1,9 @@
-"""BridgeEscrow — Ledger entry utilities."""
+import core.database as db
 
 import core.database as db
 
 
 def add_ledger_entry(txn_id, entry_type, amount, from_id=None, to_id=None):
-    """Append a ledger entry for a transaction."""
     ledger = db.load("ledger")
     entry = {
         "txn_id": txn_id,

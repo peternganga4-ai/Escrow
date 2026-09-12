@@ -1,4 +1,3 @@
-"""Tests for advance_transaction."""
 import pytest
 from core.models import User, Product
 from core.transaction_model import Transaction
@@ -11,8 +10,10 @@ def _setup_full_flow(patched_db):
     driver = User("D001", "Deliver", "driver", "p", "DELIVERY")
     trustee = User("T001", "Trust", "trust", "p", "TRUSTEE")
     product = Product("P001", "Laptop", 85000, "R001", "Nice", 9)
-    patched_db.save("users", [buyer.to_dict(), retailer.to_dict(),
-                              driver.to_dict(), trustee.to_dict()])
+    patched_db.save(
+        "users",
+        [buyer.to_dict(), retailer.to_dict(), driver.to_dict(), trustee.to_dict()],
+    )
     patched_db.save("products", [product.to_dict()])
     txn = Transaction("TXN001", "P001", "B001", "R001", 85000)
     patched_db.save("transactions", [txn.to_dict()])
