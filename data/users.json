@@ -61,5 +61,14 @@
     "role": "TRUSTEE",
     "balance": 0,
     "locked": 0
+  },
+  {
+    "user_id": "B003",
+    "name": "asdfg",
+    "username": "asdfghjkl",
+    "password": "1234",
+    "role": "BUYER",
+    "balance": 200000,
+    "locked": 0
   }
 ]
